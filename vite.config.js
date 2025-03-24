@@ -10,7 +10,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/app.bundle.js',
             ],
-            refresh: false,
+            refresh: true,
         }),
     ],
 });

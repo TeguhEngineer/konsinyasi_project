@@ -22,10 +22,24 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('password'),
-            'role' => 'admin'
+            [
+                'name' => 'Manajer',
+                'email' => 'manajer@gmail.com',
+                'password' => bcrypt('password'),
+                'role' => 'manajer',
+            ],
+            [
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('password'),
+                'role' => 'admin',
+            ],
+            [
+                'name' => 'Teguh',
+                'email' => 'teguh@gmail.com',
+                'password' => bcrypt('password'),
+                'role' => 'karyawan',
+            ],
         ]);
     }
 }

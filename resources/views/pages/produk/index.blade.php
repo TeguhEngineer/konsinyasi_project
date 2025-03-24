@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('nav-content')
     <div class="mb-4 lg:flex lg:items-center lg:justify-between col-span-full xl:mb-2">
-        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl  dark:text-white">User</h1>
+        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl  dark:text-white">Produk</h1>
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('users.index') }}"
+                    <a href="{{ route('produks.index') }}"
                         class="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
                         <svg class="w-4 h-4 mr-2.5" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@
             <div class="sm:flex mb-3 p-2">
                 <div class="items-center mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
                     <div class="flex flex-row flex-wrap items-center gap-2 w-full sm:w-auto mb-2 sm:mb-0">
-                        <form action="{{ route('users.index') }}" method="GET"
+                        <form action="{{ route('produks.index') }}" method="GET"
                             class="flex flex-wrap items-center gap-2 w-full">
                             <div class="w-auto">
                                 <select name="per_page" id="per_page" onchange="this.form.submit()"
@@ -52,9 +52,9 @@
                             </div>
 
                             <div class="flex-1 min-w-0 sm:w-64 xl:w-96">
-                                <label for="users-search" class="sr-only">Cari</label>
+                                <label for="search" class="sr-only">Cari</label>
                                 <div class="relative">
-                                    <input type="text" name="search" id="users-search" value="{{ request('search') }}"
+                                    <input type="text" name="search" id="search" value="{{ request('search') }}"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Cari...">
                                 </div>
@@ -74,7 +74,7 @@
                     <div class="flex justify-end pl-0 mt-3 space-x-1 sm:pl-2 sm:mt-0">
                         {{-- icon refresh --}}
                         @if (request()->has('search'))
-                            <a href="{{ route('users.index') }}"
+                            <a href="{{ route('produks.index') }}"
                                 class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <ion-icon class="w-6 h-6" name="refresh-outline"></ion-icon>
                             </a>
@@ -122,7 +122,7 @@
                     </div>
                 </div>
                 <div class="flex items-center ml-auto  sm:space-x-3">
-                    <a href="{{ route('users.create') }}" type="button" data-modal-target="add-user-modal"
+                    <a href="{{ route('produks.create') }}" type="button" data-modal-target="add-user-modal"
                         data-modal-toggle="add-user-modal"
                         class="inline-flex items-center ml-auto justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                         <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20"
@@ -131,7 +131,7 @@
                                 d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        Add user
+                        Add produk
                     </a>
                 </div>
             </div>
@@ -159,11 +159,19 @@
                                         </th>
                                         <th scope="col"
                                             class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            Email
+                                            Stok
                                         </th>
                                         <th scope="col"
                                             class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            Role
+                                            Harga Produk
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                            Deskripsi
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                            Status
                                         </th>
                                         <th scope="col"
                                             class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -172,7 +180,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                                    @forelse ($users as $data)
+                                    @forelse ($produks as $data)
                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                             <td class="w-4 p-4">
                                                 <div class="flex items-center">
@@ -185,18 +193,32 @@
                                             <td class="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
                                                 <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                                     <div class="text-base font-semibold text-gray-900 dark:text-white">
-                                                        {{ $data->name }}
+                                                        {{ $data->nama_produk }}
                                                     </div>
                                                 </div>
                                             </td>
                                             <td
                                                 class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                                                {{ $data->email }}</td>
+                                                {{ $data->stok }}</td>
                                             <td
                                                 class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                                 <div class="flex items-center">
                                                     <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
-                                                    {{ $data->role }}
+                                                    {{ $data->harga_produk }}
+                                                </div>
+                                            </td>
+                                            <td
+                                                class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                                <div class="flex items-center">
+                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
+                                                    {{ $data->deskripsi }}
+                                                </div>
+                                            </td>
+                                            <td
+                                                class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                                <div class="flex items-center">
+                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
+                                                    {{ $data->status }}
                                                 </div>
                                             </td>
                                             <td class="p-4 space-x-2 whitespace-nowrap flex">
@@ -212,9 +234,9 @@
                                                             d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                                                             clip-rule="evenodd"></path>
                                                     </svg>
-                                                    Edit user
+                                                    Edit produk
                                                 </button>
-                                                <form action="{{ route('users.destroy', $data->id) }}" method="post">
+                                                <form action="{{ route('produks.destroy', $data->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" data-modal-target="delete-user-modal"
@@ -229,21 +251,21 @@
                                                                 d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                                 clip-rule="evenodd"></path>
                                                         </svg>
-                                                        Delete user
+                                                        Delete produk
                                                     </button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center p-4">Data tidak ditemukan.</td>
+                                            <td colspan="9" class="text-center p-4">Data tidak ditemukan.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
                             </table>
 
                             {{-- fungsi bulk delete --}}
-                            <form id="delete-selected-form" action="{{ route('users.bulkDelete') }}" method="POST">
+                            <form id="delete-selected-form" action="{{ route('produks.bulkDelete') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="ids" id="selected-ids">
                             </form>
@@ -253,7 +275,7 @@
             </div>
 
             {{-- Pagination --}}
-            <x-pagination :paginator="$users" />
+            <x-pagination :paginator="$produks" />
 
         </div>
     </div>

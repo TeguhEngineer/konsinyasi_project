@@ -44,7 +44,7 @@
                     <img class="mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0" src="{{ asset('assets/img/logo.svg') }}"
                         alt="Jese picture">
                     <div>
-                        <h3 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">Profile picture</h3>
+                        <h3 class="mb-1 text-xl font-bold text-gray-700 dark:text-white">Profile picture</h3>
                         <div class="mb-4 text-sm text-gray-500 dark:text-gray-400">
                             JPG, GIF or PNG. Max size of 800K
                         </div>
@@ -190,7 +190,7 @@
         <div class="col-span-2">
             <div
                 class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-                <h3 class="mb-4 text-xl font-semibold dark:text-white">General information</h3>
+                <h3 class="mb-4 text-xl font-semibold dark:text-white text-gray-700">General information</h3>
                 <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
                     @csrf
                     @method('patch')
@@ -217,22 +217,22 @@
             </div>
             <div
                 class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-                <h3 class="mb-4 text-xl font-semibold dark:text-white">Password information</h3>
+                <h3 class="mb-4 text-xl font-semibold dark:text-white text-gray-700">Password information</h3>
                 <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
                     @csrf
                     @method('put')
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-3">
-                            <x-input-label for="current-password" :value="('Current password')" />
+                            <x-input-label for="current-password" :value="'Current password'" />
                             <x-text-input id="current-password" class="block mt-1 w-full" type="password"
                                 name="current_password" placeholder="••••••••" required autofocus />
-                                <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <x-input-label for="password" :value="('New password')" />
-                            <x-text-input id="password" class="block mt-1 w-full" type="password"
-                                name="password" placeholder="••••••••" required autofocus />
-                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            <x-input-label for="password" :value="'New password'" />
+                            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
+                                placeholder="••••••••" required autofocus />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             <div data-popover id="popover-password" role="tooltip"
                                 class="absolute z-10 invisible inline-block text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
                                 <div class="p-3 space-y-2">
@@ -281,10 +281,10 @@
                             </div>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <x-input-label for="password_confirmation" :value="('Password confirmation')" />
+                            <x-input-label for="password_confirmation" :value="'Password confirmation'" />
                             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                                 name="password_confirmation" placeholder="••••••••" required autofocus />
-                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>
                         <div class="col-span-6 sm:col-full">
                             <x-primary-button class="px-5 py-2.5">
@@ -294,28 +294,30 @@
                     </div>
                 </form>
             </div>
-            <div
-                class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-                <h3 class="mb-4 text-xl font-semibold dark:text-white">Delete Account</h3>
-                <form method="post" action="{{ route('profile.destroy') }}">
-                    @csrf
-                    @method('delete')
-                    <div class="grid grid-cols-6 gap-6">
+            @if (Auth::user()->role != 'admin')
+                <div
+                    class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                    <h3 class="mb-4 text-xl font-semibold dark:text-white text-gray-700">Delete Account</h3>
+                    <form method="post" action="{{ route('profile.destroy') }}">
+                        @csrf
+                        @method('delete')
+                        <div class="grid grid-cols-6 gap-6">
 
-                        <div class="col-span-6 sm:col-span-3">
-                            <x-input-label for="password-input" :value="('Password')" />
-                            <x-text-input id="password-input" class="block mt-1 w-full" type="password"
-                                name="password" placeholder="••••••••" required autofocus />
+                            <div class="col-span-6 sm:col-span-3">
+                                <x-input-label for="password-input" :value="'Password'" />
+                                <x-text-input id="password-input" class="block mt-1 w-full" type="password"
+                                    name="password" placeholder="••••••••" required autofocus />
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            </div>
+                            <div class="col-span-6 sm:col-full">
+                                <x-danger-button>
+                                    Delete account
+                                </x-danger-button>
+                            </div>
                         </div>
-                        <div class="col-span-6 sm:col-full">
-                            <x-danger-button>
-                                Delete account
-                            </x-danger-button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+            @endif
 
 
         </div>

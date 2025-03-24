@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Tailwind CSS Admin Dashboard - Flowbite</title>
+    <title>KonsinyasiGO</title>
     <link rel="shortcut icon" href="{{ asset('assets/img/logo.svg') }}" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    @vite(['resources/css/app.css', 'resources/css/flowbite-admin.css', 'resources/js/app.bundle.js'])
+    @vite(['resources/css/app.css', 'resources/css/flowbite-admin.css', 'resources/js/app.js'])
 
     <script>
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(
@@ -35,6 +35,14 @@
         <div class="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/90" id="sidebarBackdrop"></div>
 
         <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
+            @if (session('success'))
+                <x-toast-success>{{ session('success') }}</x-toast-success>
+            @elseif (session('error'))
+                <x-toast-danger>Error</x-toast-danger>
+            @elseif (session('warning'))
+                <x-toast-warning>{{ session('warning') }}</x-toast-warning>
+            @endif
+
             <main>
                 <div class="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 bg-gray-50 dark:bg-gray-900">
                     @yield('nav-content')
@@ -57,6 +65,7 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    @stack('js')
 </body>
 
 </html>

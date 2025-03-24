@@ -20,29 +20,29 @@
                         </form>
                     </li> --}}
                     <li>
-                        <a href="/dashboard"
+                        <a href="{{ route('dashboard') }}"
                             class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ Request::is('dashboard*') ? 'bg-gray-200 dark:bg-gray-700' : '' }}">
-                            <ion-icon class="w-6 h-6 text-gray-500" name="speedometer"></ion-icon>
+                            <ion-icon class="w-6 h-6 text-gray-500" name="speedometer-outline"></ion-icon>
                             <span class="ml-3" sidebar-toggle-item>Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
+                        <a href="{{ route('produks.index') }}"
+                            class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ Request::is('produks*') ? 'bg-gray-200 dark:bg-gray-700' : '' }}">
                             <ion-icon class="w-6 h-6 text-gray-500" name="list"></ion-icon>
                             <span class="ml-3" sidebar-toggle-item>Produk</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
+                        <a href="{{ route('distributors.index') }}"
+                            class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ Request::is('distributors*') ? 'bg-gray-200 dark:bg-gray-700' : '' }}">
                             <ion-icon class="w-6 h-6 text-gray-500" name="storefront-outline"></ion-icon>
                             <span class="ml-3" sidebar-toggle-item>Distributor</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
+                        <a href="{{ route('konsinyasis.index') }}"
+                            class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ Request::is('konsinyasis*') ? 'bg-gray-200 dark:bg-gray-700' : '' }}">
                             <ion-icon class="w-6 h-6 text-gray-500" name="bookmarks-outline"></ion-icon>
                             <span class="ml-3" sidebar-toggle-item>Konsinyasi</span>
                         </a>
@@ -50,7 +50,7 @@
                     <li>
                         <a href="#"
                             class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
-                            <ion-icon class="w-6 h-6 text-gray-500" name="receipt-outline"></ion-icon>
+                            <ion-icon class="w-6 h-6 text-gray-500" name="cash-outline"></ion-icon>
                             <span class="ml-3" sidebar-toggle-item>Realisasi</span>
                         </a>
                     </li>

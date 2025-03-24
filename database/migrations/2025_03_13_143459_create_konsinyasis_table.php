@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('konsinyasis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('distributor_id')->constrained('distributors');
+            $table->foreignId('users_id')->constrained('users');
             $table->date('tgl_konsinyasi');
             $table->date('tgl_estimasi_penarikan');
             $table->decimal('total_pembayaran');
